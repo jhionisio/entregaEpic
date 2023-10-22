@@ -18,10 +18,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @NotBlank
+    @NotBlank(message = "{task.title.blank}")
     String title;
 
-    @Size(min = 10)
+    @Size(min = 10, message = "{task.description.size}")
     String description;
 
     @Min(1)
