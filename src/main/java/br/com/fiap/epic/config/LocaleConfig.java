@@ -22,7 +22,6 @@ public class LocaleConfig {
     @Bean
     LocaleResolver localeResolver() {
         var resolver = new CookieLocaleResolver();
-        // resolver.setDefaultLocale(Locale.ENGLISH);
         return resolver;
     }
 
