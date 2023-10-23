@@ -8,18 +8,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>EpicTask</title>
+    <title>Ze's Restaurant</title>
 </head>
 
 <body class="grey lighten-3">
 
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Epic Task</a>
+            <a href="#" class="brand-logo">Ze's Restaurant</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="active"><a href="/task">pendendes</a></li>
-                <li><a href="#">concluídas</a></li>
-                <li><a href="#">usuários</a></li>
+                <li><a href="/menu">Cardápio</a></li>
+                <li><a href="#">Pedidos</a></li>
+                <li><a href="#">Usuários</a></li>
                 <li>
                     <!-- Dropdown Trigger -->
                     <a class='dropdown-trigger' href='#' data-target='dropdown1'>
@@ -43,28 +43,15 @@
     </nav>
 
     <div class="container">
-
-        <div class="card-panel teal accent-3" th:if="${success}" th:text="${success}"></div>
-        <div class="card-panel red darken-4 white-text" th:if="${error}" th:text="${error}"></div>
-
-        <h2 th:text="#{task.pending}">Tarefas Pendentes</h2>
+        <h2 th:text="#{menu.title}">Cardápio</h2>
 
         <div class="row">
-            <div class="col s12 m6" th:each="task : ${tasks}">
+            <div class="col s12 m6" th:each="menu : ${menus}">
                 <div class="card">
                     <div class="card-content">
-                        <div class="progress">
-                            <div class="determinate" th:style="${'width:' + task.status + '%'}"></div>
-                        </div>
-                        <span class="card-title" th:text="${task.title}"></span>
-                        <p th:text="${task.description}"></p>
-                        <span data-badge-caption="pontos" class="badge blue white-text" th:text="${task.score}"></span>
-                    </div>
-                    <div class="card-action">
-                        <a th:href="${'/task/delete/' + task.id}" class="btn red">
-                            <i class="material-icons">delete</i>
-                        </a>
-
+                        <span class="card-title" th:text="${menu.name}"></span>
+                        <p th:text="${menu.description}"></p>
+                        <span data-badge-caption="Reais" class="badge blue white-text" th:text="${menu.value}"></span>
                     </div>
                 </div>
             </div>
@@ -72,24 +59,21 @@
     </div>
 
     <div class="fixed-action-btn">
-        <a href="/task/new" class="btn-floating btn-large blue" title="adicionar tarefa">
+        <a href="/menu/new" class="btn-floating btn-large blue" title="adicionar prato">
             <i class="large material-icons">add</i>
         </a>
     </div>
-
-
 </body>
 
 <script>
-      document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            const options = {
-                constrainWidth: false,
-                coverTrigger: false
-            }
-            var instances = M.Dropdown.init(elems, options);
-        });
-
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        const options = {
+            constrainWidth: false,
+            coverTrigger: false
+        }
+        var instances = M.Dropdown.init(elems, options);
+    });
 </script>
 
 </html>

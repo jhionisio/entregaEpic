@@ -1,4 +1,4 @@
-package br.com.fiap.epic.task;
+package br.com.fiap.epic.menu;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,24 +12,20 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Task {
+public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @NotBlank(message = "{task.title.blank}")
-    String title;
+    @NotBlank(message = "{menu.name.blank}")
+    String name;
 
-    @Size(min = 10, message = "{task.description.size}")
+    @Size(min = 10, message = "{menu.description.size}")
     String description;
 
     @Min(1)
     @Max(100)
-    Integer score;
-
-    @Min(0)
-    @Max(100)
-    Integer status;
+    Integer value;
 
 }

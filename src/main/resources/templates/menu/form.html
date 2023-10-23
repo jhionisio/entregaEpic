@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Ze's Restaurant</title>
+</head>
+
+<body class="grey lighten-3">
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Ze's Restaurant</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/menu">Cardápio</a></li>
+                <li><a href="#">Pedidos</a></li>
+                <li><a href="#">Usuários</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Cadastrar Prato</h2>
+        <div class="card">
+            <div class="card-content">
+                <form class="col s12" th:action="${'/menu'}" method="post" th:object="${menu}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input 
+                                th:field="*{name}" 
+                                type="text" 
+                                th:classappend="${#fields.hasErrors('name')} ? invalid" 
+                            >
+                            <label for="name">Nome do Prato</label>
+                            <span class="helper-text red-text" th:errors="*{name}"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea 
+                                class="materialize-textarea" 
+                                th:field="*{description}" 
+                                th:classappend="${#fields.hasErrors('description')} ? invalid" 
+                            ></textarea>
+                            <label for="description">Descrição</label>
+                            <span class="helper-text red-text" th:errors="*{description}"></span>
+                        </div>
+                    </div>
+                    <label for="value">Preço</label>
+                    <div class="input-field col s12">
+                        <input 
+                            th:field="*{value}" 
+                            type="number" 
+                            min="0.01" 
+                            step="0.01" 
+                            th:classappend="${#fields.hasErrors('value')} ? invalid" 
+                        >
+                        <span class="helper-text red-text" th:errors="*{value}"></span>
+                    </div>
+                </div>
+                <div class="card-action right-align">
+                    <a href="/menu" class="btn grey">Cancelar</a>
+                    <button class="btn">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
